@@ -90,6 +90,20 @@
         "Acceso denegado: datos incorrectos";
     }
   });
+
+  import { onAuthStateChanged } 
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("app").style.display = "block";
+  } else {
+    document.getElementById("login").style.display = "block";
+    document.getElementById("app").style.display = "none";
+  }
+});
+
 </script>
 
 </body>

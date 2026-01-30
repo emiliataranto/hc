@@ -22,7 +22,8 @@
   <h1>Historial Clínico</h1>
   <p class="subtitulo">Seleccioná un paciente</p>
 
-  <button onclick="logout()">Cerrar sesión</button>
+  <button id="btnLogout">Cerrar sesión</button>
+
   <br><br>
   
  <div class="buscador-container">
@@ -35,16 +36,21 @@
 </div>
 
   <div id="lista" class="grid">
-    <div class="card" onclick="abrirPaciente(1)">Paciente 1</div>
-    <div class="card" onclick="abrirPaciente(2)">Paciente 2</div>
-    <div class="card" onclick="abrirPaciente(3)">Paciente 3</div>
-     <div class="card" onclick="abrirPaciente(4)">Paciente 4</div>
-    <div class="card" onclick="abrirPaciente(5)">Paciente 5</div>
-    <div class="card" onclick="abrirPaciente(6)">Paciente 6</div>
-    <div class="card" onclick="abrirPaciente(7)">Paciente 7</div>
-    <div class="card" onclick="abrirPaciente(8)">Paciente 8</div>
-    <div class="card" onclick="abrirPaciente(9)">Paciente 9</div>
-     <div class="card" onclick="abrirPaciente(10)">Paciente 10</div>
+  <div class="card" data-id="1">Paciente 1</div>
+  <div class="card" data-id="2">Paciente 2</div>
+  <div class="card" data-id="3">Paciente 3</div>
+  <div class="card" data-id="1">Paciente 4</div>
+  <div class="card" data-id="2">Paciente 5</div>
+  <div class="card" data-id="3">Paciente 6</div>
+   <div class="card" data-id="1">Paciente 7</div>
+  <div class="card" data-id="2">Paciente 8</div>
+  <div class="card" data-id="3">Paciente 9</div>
+  <div class="card" data-id="1">Paciente 10</div>
+  <div class="card" data-id="2">Paciente 11</div>
+</div>
+
+</div>
+
     <div class="card" onclick="abrirPaciente(11)">Paciente 11</div>
   </div>
 
@@ -102,6 +108,19 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("login").style.display = "block";
     document.getElementById("app").style.display = "none";
   }
+});
+
+// BOTÓN CERRAR SESIÓN
+document.getElementById("btnLogout").addEventListener("click", async () => {
+  await signOut(auth);
+});
+
+// CLICK EN PACIENTES
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", () => {
+    const id = card.dataset.id;
+    abrirPaciente(id);
+  });
 });
 
 </script>
